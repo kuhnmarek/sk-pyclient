@@ -1,6 +1,6 @@
 # Space Know pyClient
 
-This is a tool to fetch imagery and perform analysis using SpaceKnow platform.
+This is a tool to fetch imagery and perform analysis using SpaceKnow platform (https://docs.spaceknow.com/)
 
 ## Requirements
 - Python 3.7
