@@ -3,6 +3,7 @@ import logging
 
 
 class HttpSession:
+    """A class that handles http REST API communication using aiohttp"""
 
     def __init__(self):
         self.logger = logging.getLogger('root')
@@ -10,6 +11,8 @@ class HttpSession:
         self.headers = {}
 
     async def post(self, url, data="", ret_type=None):
+        """Calls the server using POST method."""
+
         self.logger.debug("POST " + url)
 
         async with aiohttp.ClientSession() as session:
@@ -30,6 +33,8 @@ class HttpSession:
                         return {}
 
     async def get(self, url):
+        """Calls the server using GET method."""
+
         async with aiohttp.ClientSession() as session:
             response = await session.get(url, headers=self.headers)
 
@@ -40,6 +45,7 @@ class HttpSession:
         return response
 
     async def get_bytes(self, url):
+        """Calls the server using GET method and reads response as bytes."""
         async with aiohttp.ClientSession() as session:
             response = await session.get(url, headers=self.headers)
 
@@ -47,10 +53,12 @@ class HttpSession:
                 "Request failed: (" + str(response.status) + ") " + response.reason + " " + str(response.url)
 
             self.logger.debug("GET Response: " + str(response))
-            return  await response.read()
+            return await response.read()
 
     async def close(self):
+        """Closes the current Client Session"""
         await self.session.close()
 
     def new_session(self):
+        """Creates new Client Session"""
         self.session = aiohttp.ClientSession()

@@ -5,6 +5,7 @@ from utils.SKRemoteTask import SKRemoteTask
 
 
 class Imagery:
+    """A class to handle requests for imagery from SpaceKnow platform."""
 
     IMAGERY_URL = "https://spaceknow-imagery.appspot.com/imagery/search"
 
@@ -15,7 +16,13 @@ class Imagery:
         self.result = None
 
     def get_scenes(self, data):
+        """
+        Retrieves all the scene for the specified time and area of interest.
 
+        Args
+            data: A dictionary with imagery search details
+                For further information check https://docs.spaceknow.com/
+        """
         task = SKRemoteTask(self.IMAGERY_URL, data)
         self.result = self.taskingService.start_parallel([task])
 

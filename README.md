@@ -18,7 +18,7 @@ python3 main.py
 ```
 
 ## Notes
-- Need to do documentation
 - Imagery tiles are downloaded but not stitched together
 - No support for paginated responses
 - Output the actual number of cars from the Analysis task
+- JWT Token is now regenerated with each login. Instead, the session should be reused.

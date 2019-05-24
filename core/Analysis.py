@@ -8,6 +8,11 @@ from utils.SKRemoteTask import *
 
 
 class Analysis:
+    """
+    An abstract class to represent a SpaceKnow analysis i.e. a task to run a machine learning algorithm on supplied imagery.
+
+    Also it collects and downloads the results.
+    """
 
     PATH_DOWNLOAD_IMAGE = "data/img/"
     PATH_OUTPUT = "data/img/{0}/"
@@ -23,6 +28,8 @@ class Analysis:
         self.result = None
 
     def run(self, scenes, extent):
+        """Creates tasks for the specific analysis algorithm and starts them using Tasking service."""
+
         self.id = uuid.uuid4()      # Generate identifier for each analysis run - for file naming etc.
 
         tasks = []
@@ -32,6 +39,7 @@ class Analysis:
         self.result = self.taskingService.start_parallel(tasks)
 
     def download_results(self):
+        """Initiates the download of the result files."""
         # Make output folder for this run
         os.mkdir(self.PATH_OUTPUT.format(str(self.id)))
 
@@ -40,6 +48,7 @@ class Analysis:
         asyncio.run(self.fetch_scene(scene))
 
     async def fetch_scene(self, scene):
+        """Coroutine to fetch analysis results from the grid endpoint."""
 
         # TODO make parallel
         for output_file_name in self.OUTPUT_FILES:

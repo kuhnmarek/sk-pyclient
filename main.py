@@ -1,4 +1,16 @@
 
+"""
+This is a tool to work with SpaceKnow imagery Platform using command line interface.
+
+
+Currently it supports searching for imagery using Ragnar API and performing cars analysis through Kraken API.
+Documentation for SpaceKnow Platform can be found at https://docs.spaceknow.com/
+
+
+author: Marek Kuhn, 2019
+
+"""
+
 import asyncio
 import argparse
 
