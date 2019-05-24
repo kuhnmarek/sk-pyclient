@@ -11,10 +11,10 @@ pip install -r /path/to/requirements.txt
 ```
 
 ## Running
-Modify files in input folder to suit your neeeds. Then simply run the main.py script
+Modify files in input folder to suit your neeeds. Then simply run the main.py script with your SpaceKnow account login
 
 ```
-python3 main.py
+python3 main.py -u [your-username] -p [your-password]
 ```
 
 ## Notes
